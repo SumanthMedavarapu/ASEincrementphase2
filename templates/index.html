@@ -1,0 +1,56 @@
+
+
+
+<html>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script async>(function(w, d) { w.CollectId = "5e814573080ddb1058a71c47"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
+        
+        
+    </head>
+    <body background="static\img\bg2.jpg">
+        <div class="container login-container">
+            <div class="row">
+                <div class="col-md-8 login-form-1">
+                    <br>
+                    <br>
+                    <form>
+                        <br>
+                    <img src="static\img\bg3.jpg" classs="img-rounded" alt="Cinque Terre" width="600" height="450">
+                    </form>
+                </div>
+                <div class="col-md-4 login-form-2">
+                        
+                            <form method=POST action="{{ url_for('login') }}">
+                                <div class="form-group">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <label for="exampleInputEmail1"><b>Username</b></label>
+                                    <input type="text" class="form-control" name="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1"><b>Password</b></label>
+                                    <input type="password" class="form-control" name="pass" placeholder="Password">
+                                </div>
+                                    <button type="submit" class="btn btn-primary btn-block"><b>Log In</b></button>
+                            </form>
+                            <br>
+                                <div>
+                                Don't have an account? <a href="{{ url_for('register') }}"></b>Sign up here</b></a>.
+                                </div>
+                        
+                </div>
+            </div>
+        </div>
+        
+        
+        </body>
+        </html>
+        <!------ Include the above in your HEAD tag ---------->
+        

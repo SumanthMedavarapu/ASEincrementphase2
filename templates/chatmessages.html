@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="static/style.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+/* Button used to open the chat form - fixed at the bottom of the page */
+.open-button {
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  border-radius: 50%;
+}
+
+
+
+/* Add styles to the form container */
+
+/* Add a red background color to the cancel button */
+</style>
+<script>
+  function getBotResponse() {
+  var rawText = $("#textInput").val();
+  /*var userHtml = '<p class="userText"><img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right"><span>' + rawText + '</span></p>';*/
+
+  var userHtml = '<div class="chat self"><div class="user-photo"><img src="static/man.jpg"></div><p class="chat-message">' + rawText + '</p></div>';
+
+  /*var userHtml = {block: 'start', behavior: 'smooth'}
+  '<div class="chat friend"><div class="user-photo"><img src="robot.png"></div><p class="chat-message">' + rawText + '</p></div>';*/
+
+  $("#textInput").val("");
+  $("#chatlog").append(userHtml);
+  //document.getElementById('chatlog').scrollIntoView();
+  $.get("/get", { msg: rawText }).done(function(data) {
+  
+    //var botHtml = '<p class="botText"><img src="/w3images/bandmember.jpg" alt="Avatar"><span>' + data + '</span></p>';
+
+    var botHtml= '<div class="chat friend"><div class="user-photo"><img src="static/robot.png"></div><p class="chat-message">' + data + '</p></div>';
+  
+    $("#chatlog").append(botHtml);
+  //scroll("chatbox");
+  //document.getElementById('chatlog').scrollIntoView();
+  });
+  
+  }
+  $("#textInput").keypress(function(e) {
+  if(e.which == 13) {
+  getBotResponse();
+  }
+  });
+  $("#buttonInput").click(function() {
+  getBotResponse();
+  })
+
+  
+
+  </script>
+  
+
+</head>
+<body>
+
+
+
+<button class="open-button" onclick="openForm()">
+<img src="static/message.jpg">
+</button>
+
+<div class="chatbox" id="myForm">
+  <div class="userprofile">
+    <div class="user-photo"><img src="static/robo.png"></div>
+    <p class="name">Robot</p>
+    <button type="button" class="btn cancel" onclick="closeForm()"><img src="static/cross.png"></button>
+
+  </div>
+  
+  <div class="chatlogs" id="chatlog">
+
+    <div class="chat friend">
+        <div class="user-photo"><img src="static/robot.png"></div>
+        <p class="chat-message">what's up,Brother..!!</p>
+    </div>
+</div>
+<div class="chat-form" id="userInput">
+    <textarea id="textInput" name="msg" placeholder="Type message..."></textarea>
+    <button id="buttonInput" type="submit" onclick="getBotResponse()">Send</button>
+</div>
+
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+</body>
+</html>

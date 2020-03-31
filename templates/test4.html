@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>Bootstrap Theme Company Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<link rel="stylesheet" type="text/css" href="static/style.css">-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+
+
+    #map {
+  height: 500px;
+}
+
+
+
+.chatbox{
+    /*width:500px;
+    min-width: 390px;
+    height:600px;*/
+    background: #fff;
+    /*padding: 25px;*/
+    /*margin: 20px auto;
+    box-shadow:0 3px #ccc;*/
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    border-radius: 12px; 
+}
+.userprofile{
+    height: 50px;
+    padding:10px;
+    width: 100%;
+
+    display:flex;
+    flex-flow:row wrap;
+    align-items:flex-start;
+    margin-bottom:10px;
+
+}
+
+.userprofile .user-photo{
+    width:50px;
+    height: 50px;
+    background: #ccc;
+    border-radius:50%;
+    overflow:hidden;
+
+}
+.userprofile .user-photo img{
+    width:100%;
+}
+.userprofile .name{
+    width:60%;
+    padding: 15px;
+    /*margin:5px 10px 0;*/
+    
+    color: green;
+    font-size:18px;
+}
+
+
+.chatlogs{
+    padding: 10px;
+    width:100%;
+
+    max-width:350px;
+    height: 300px;
+
+    /*height:450px;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.chatlogs::-webkit-scrollbar{
+    width:10px;
+}
+
+.chatlogs::-webkit-scrollbar-thumb{
+    border-radius:5px;
+    background:rgba(0,0,0,.1)
+}
+
+
+
+.chat{
+    display:flex;
+    flex-flow:row wrap;
+    align-items:flex-start;
+    margin-bottom:10px;
+
+}
+.chat .user-photo{
+    width:60px;
+    height: 60px;
+    background: #ccc;
+    border-radius:50%;
+    overflow:hidden;
+
+}
+.chat .user-photo img{
+    width:100%;
+}
+
+.chat .chat-message{
+    width:70%;
+    padding: 15px;
+    margin:5px 10px 0;
+    
+    border-radius: 10px;
+    color:#fff;
+    font-size:18px;
+}
+.friend .chat-message{
+    background: #1adda4;
+}
+.self .chat-message{
+    background: #1ddced;
+    order:-1;
+
+}
+
+.chat-form{
+    margin-top: 20px;
+    display:flex;
+    align-items:flex-start;
+}
+.chat-form textarea{
+    background:#fbfbfb;
+    width:75%;
+    height:50px;
+    border:2px solid #eee;
+    border-radius: 3px;;
+    resize:none;
+    padding:10px;
+    font-size:18px;
+    color:#333;
+}
+
+.chat-form textarea:focus{
+    background:#fff;
+}
+
+.chat-form textarea::-webkit-scrollbar{
+    width:10px;
+}
+
+.chat-form textarea::-webkit-scrollbar-thumb{
+    border-radius:5px;
+    background:rgba(0,0,0,.1)
+}
+.chat-form button{
+    background: #1ddced;
+    padding:5px 10px;
+    font-size:18px;
+    color:blue;
+
+    border:none;
+    margin:0 10px;
+    border-radius:3px;
+    box-shadow:0 3px 0 #0eb2c1;
+    cursor: pointer;
+
+}
+
+  
+
+
+.open-button {
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  border-radius: 50%;
+}
+
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+  }
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }  
+  .jumbotron {
+    background-color: #E97526;
+    color: #fff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
+  }
+  .container-fluid {
+    padding: 60px 50px;
+  }
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+  .logo-small {
+    color: #f4511e;
+    font-size: 50px;
+  }
+  .logo {
+    color: #f4511e;
+    font-size: 200px;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+  .carousel-control.right, .carousel-control.left {
+    background-image: none;
+    color: #f4511e;
+  }
+  .carousel-indicators li {
+    border-color: #f4511e;
+  }
+  .carousel-indicators li.active {
+    background-color: #f4511e;
+  }
+  .item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    font-style: italic;
+    margin: 70px 0;
+  }
+  .item span {
+    font-style: normal;
+  }
+  .panel {
+    border: 1px solid #f4511e; 
+    border-radius:0 !important;
+    transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+    border: 1px solid #f4511e;
+    background-color: #fff !important;
+    color: #f4511e;
+  }
+  .panel-heading {
+    color: #fff !important;
+    background-color: #f4511e !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+    background-color: white !important;
+  }
+  .panel-footer h3 {
+    font-size: 32px;
+  }
+  .panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+  }
+  .panel-footer .btn {
+    margin: 15px 0;
+    background-color: #f4511e;
+    color: #fff;
+  }
+  .navbar {
+    margin-bottom: 0;
+    background-color: #215bb0;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+  }
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #f4511e;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+      font-size: 150px;
+    }
+  }
+  </style>
+
+<script>
+  function getBotResponse() {
+  var rawText = $("#textInput").val();
+  /*var userHtml = '<p class="userText"><img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right"><span>' + rawText + '</span></p>';*/
+
+  var userHtml = '<div class="chat self"><div class="user-photo"><img src="static/man.jpg"></div><p class="chat-message">' + rawText + '</p></div>';
+
+  /*var userHtml = {block: 'start', behavior: 'smooth'},{scrollInertia:0}
+  '<div class="chat friend"><div class="user-photo"><img src="robot.png"></div><p class="chat-message">' + rawText + '</p></div>';*/
+
+  $("#textInput").val("");
+  $(".chatlogs").append(userHtml);
+  //$(".chatlogs").mCustomScrollbar("scrollTo","bottom");
+  var chatlog = document.querySelector('#chatlog');
+  chatlog.scrollTop = chatlog.scrollHeight - chatlog.clientHeight;
+ // $( "#chatlog" ).scroll();
+  //document.getElementById('chatlog').scrollIntoView();
+  $.get("/get", { msg: rawText }).done(function(data) {
+  
+    //var botHtml = '<p class="botText"><img src="/w3images/bandmember.jpg" alt="Avatar"><span>' + data + '</span></p>';
+
+    var botHtml= '<div class="chat friend"><div class="user-photo"><img src="static/robot.png"></div><p class="chat-message">' + data + '</p></div>';
+  
+    $(".chatlogs").append(botHtml);
+    //$(".chatlogs").mCustomScrollbar("scrollTo","bottom");
+    var chatlog = document.querySelector('#chatlog');
+    chatlog.scrollTop = chatlog.scrollHeight - chatlog.clientHeight;
+    //$( "#chatlog" ).scroll();
+  //scroll("chatbox");
+  //document.getElementById('chatlog').scrollIntoView();
+  });
+  
+  }
+  $("#textInput").keypress(function(e) {
+  if(e.which == 13) {
+  getBotResponse();
+  }
+  });
+  $("#buttonInput").click(function() {
+  getBotResponse();
+  })
+
+  
+  
+
+/*function updateScrollbar() {
+    $chatlogs.mCustomScrollbar('scrollTo', 'bottom', {
+      scrollInertia: 10,
+      timeout: 0
+    });
+  }*/
+
+  
+
+  </script>
+
+
+
+
+
+
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Transport Chatbot</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#maps">MAPS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1>TRANSPORT CHATBOT</h1> 
+  <p>YOUR SAFETY IS OUR PRIORITY. ACCESS EMERGENCY ROADSIDE SERVICES NOW.</p> 
+  <form>
+    <div class="input-group">
+      <input type="email" class="form-control" size="50" placeholder="Email Address" required>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-danger">Subscribe</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Container (About Section) -->
+<div id="about" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>About TRANSPORT CHATBOT</h2><br>
+      <h4>Whether you're stuck in the middle of nowhere or stuck in the middle of somewhere, TRANSPORT CHATBOT's roadside assistance can help. Save yourself time and stress when faced with your next flat tire or broken windshield. Contact us or request roadside help with just a few taps in the ChatBot</h4><br>
+      <p>A bot is an artificial intelligence software designed to perform a series of tasks on its own and without the help of a human being. Tasks a bot can do can vary from things such as making a reservation at a restaurant, marking a date on the calendar or collecting and displaying information to its users, and informing the user about the weather, etc. Chatbots are capable of simulating a conversation with a person and therefore are increasingly present in messaging applications. Chatbots are versatile, therefore they’re able to adapt and help solve different business pains.A chatbot is a software system, which can interact or “chat” with a human user in natural language (such as English, or whatever other language the chatbot has been built on). Chatbots can help inform a user, or help them with fulfilling a task.In a rule-based approach, a bot answers questions based on some rules on which it is trained on. The rules defined can be very simple to very complex. The creation of these bots are relatively straightforward using some rule-based approach, but the bot is not efficient in answering questions, whose pattern does not match with the rules on which the bot is trained.However, for a chatbot to be able to do more than simply answer questions it has to be connected to an Artificial Intelligence (AI). AI is the technology that allows the bot to learn from the interactions it has with the end users</p>
+      <br><button class="btn btn-default btn-lg" onclick="openForm()"> CONTINUE FOR HELP -></button>
+    </div>
+    <div class="col-sm-4">
+      <img src="static/chatbot2.jpg" class="img-rounded" alt="Cinque Terre" width="350" height="250"><br>
+      <br>
+      <img src="static/chatbot.jpg" class="img-rounded" alt="Cinque Terre" width="350" height="300"><br>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="static/carbd.jpg" class="img-rounded" alt="Cinque Terre" width="250" height="225"><br>
+      <br>
+      <br>
+      <img src="static/bd3.jpg" class="img-rounded" alt="Cinque Terre" width="250" height="190">
+    </div>
+    <div class="col-sm-8">
+      <h2>TRANSPORT CHATBOT: The Fastest Way to Get Roadside Help</h2><br>
+      <h4>When your car lets you down, we'll be here to help get you back up and running. Towing coverage is included with Transport chatbot Emergency Road Service coverage if you break down. Don't pay out of pocket for towing. Let us arrange for a tow truck to get you to a repair shop, or send roadside assistance for:</h4><br>
+      <p>Why use the Transport chatbot to get roadside assistance?
+          <li>Request help in as little as 2 minutes</li>
+          <li>Available 24/7 for a quick response</li>
+          <li>GPS locator can help us find you</li>
+          <li>Jump starts for dead car batteries</li>
+          <li>Labor to change a flat tire</li>
+          <li>Lockout services (up to $100)</li></p>
+    </div>
+  </div>
+</div>
+
+<!-- Container (Services Section) -->
+<div id="services" class="container-fluid text-center">
+  <h2>SERVICES</h2>
+  <h4>What we offer</h4>
+  <br>
+  <div class="row slideanim">
+    <div class="col-sm-4">
+      <img src="static/1.png" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+      <h4>FLAT TIRE</h4>
+      <p>Changing a flat tire, including putting on your spare</p>
+    </div>
+    <div class="col-sm-4">
+      <img src="static/2.png" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+      <h4>BREAKDOWN</h4>
+      <p>Jump-starting your car if your battery is out of power</p>
+    </div>
+    <div class="col-sm-4">
+      <img src="static/7.png" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+      <h4>FUEL</h4>
+      <p>Delivering fuel if you run out of gas</p>
+    </div>
+  </div>
+  <br><br>
+  <div class="row slideanim">
+    <div class="col-sm-4">
+      <img src="static/8.png" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+      <h4>ACCIDENT</h4>
+      <p>When an accident occurs</p>
+    </div>
+    <div class="col-sm-4">
+      <img src="static/9.png" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+      <h4>CAR UNLOCK</h4>
+      <p>Unlocking your car if you're locked out</p>
+    </div>
+    <div class="col-sm-4">
+      <img src="static/6.png" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+      <h4 style="color:#303030;">TOWING</h4>
+      <p>When your car needs to be towed</p>
+    </div>
+  </div>
+</div>
+
+
+<br>
+  
+  <h2 class="text-center">What our customers say</h2>
+  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <h4>"Recently had a flat tire and the roadside assistance feature on the app was super easy to use. I received friendly and professional help quickly and was back on the road in no time. Thank you, Transport Chatbot !"<br><span>Michael Roe, Vice President, Comment Box</span></h4>
+      </div>
+      <div class="item">
+        <h4>" I am very pleased with how quickly customer service returns a response. I was also very pleased with how quickly I was able to be reimbursed for a glass claim. Excellent!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+      </div>
+      <div class="item">
+        <h4>"Locked out of my wife's car. Opened the app and asked for roadside assistance. 40 minutes later they show up and 45 seconds later I'm in my car. Saved the day."<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+<!-- Container (Pricing Section) -->
+<div id="maps" class="container-fluid">
+  <div class="text-center">
+    <h2>maps</h2>
+    <div class="container-fluid">
+      
+      <div class="row mb-2">
+        <div class="col">
+          <input class="form-control" id="search" type="text" placeholder="Search..." />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  
+    
+  </div>
+    
+</div>
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid bg-grey">
+  <h2 class="text-center">CONTACT</h2>
+  <div class="row">
+    <div class="col-sm-5">
+      <p>Contact us and we'll get back to you within 24 hours.</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> Kansas,MO, US</p>
+      <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> services@transportchatbot.com</p>
+    </div>
+    <div class="col-sm-7 slideanim">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <button class="btn btn-default pull-right" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Image of location/map -->
+
+
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p> Developed by Team 5</p>
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+
+<button class="open-button" onclick="openForm()">
+  <img src="static/message.jpg">
+  </button>
+  
+  <div class="chatbox" id="myForm">
+    <div class="userprofile">
+      <div class="user-photo"><img src="static/robo.png"></div>
+      <p class="name">Robot</p>
+      <button type="button" class="btn cancel" onclick="closeForm()"><img src="static/cross.png"></button>
+  
+    </div>
+    
+    <div class="chatlogs" id="chatlog">
+  
+      <div class="chat friend">
+          <div class="user-photo"><img src="static/robot.png"></div>
+          <p class="chat-message">what's up,Brother..!!</p>
+      </div>
+  </div>
+  <div class="chat-form" id="userInput">
+      <textarea id="textInput" name="msg" placeholder="Type message..."></textarea>
+      <button id="buttonInput" type="submit" onclick="getBotResponse()">Send</button>
+  </div>
+  
+  </div>
+  
+  <script>
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+  </script>
+<!-- map apis    -->
+
+<script src="static\js\map.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK_M2hCax5JASPRAxKQ15ySRZPQ0232GU&callback=createMap&libraries=places" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK_M2hCax5JASPRAxKQ15ySRZPQ0232GU&callback=createMap1" async defer></script>
+
+  
+
+</body>
+</html>
